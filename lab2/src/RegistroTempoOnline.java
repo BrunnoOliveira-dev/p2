@@ -1,7 +1,8 @@
 public class RegistroTempoOnline {
     private String materia;
-    private int tempo=0;
+    private int tempo = 0;
     private int metaTempo = 120;
+
     public RegistroTempoOnline(String materia) {
         this.materia = materia;
     }
@@ -22,6 +23,6 @@ public class RegistroTempoOnline {
     }
 
     public String toString() {
-        return materia + " " + tempo+"/"+metaTempo;
+        return materia + " " + tempo+ "/"  + metaTempo;
     }
 }

@@ -1,6 +1,6 @@
 public class Descanso {
-    int horaDescanso=0;
-    int numeroSemanas=1;
+    int horaDescanso = 0;
+    int numeroSemanas = 1;
 
     public void defineHorasDescanso(int i) {
         this.horaDescanso = i;

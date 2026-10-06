@@ -1,10 +1,9 @@
-import java.util.HashMap;
-
 public class RegistroResumos {
     private int limite;
-    private int indice=0;
+    private int indice = 0;
     private String[] resumos;
     private String[] conteudos;
+
     public RegistroResumos(int i) {
         this.limite = i;
         this.resumos = new String[i];
@@ -22,7 +21,7 @@ public class RegistroResumos {
     public String[] pegaResumos() {
         String[] todos = new String[this.limite];
         int k = 0;
-        for (int i=0; i<limite; i++) {
+        for (int i = 0; i < limite; i++) {
             if (resumos[i] != null) {
                 todos[k] = resumos[i] + ": " + conteudos[i];
                 k++;
@@ -33,7 +32,7 @@ public class RegistroResumos {
 
     public int conta() {
         int total = 0;
-        for (int i=0; i<limite; i++) {
+        for (int i = 0; i < limite; i++) {
             if (resumos[i] != null) total++;
         }
 
