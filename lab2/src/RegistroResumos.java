@@ -1,18 +1,23 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class RegistroResumos {
     private int limite;
     private int indice = 0;
-    private String[] resumos;
-    private String[] conteudos;
+    private Resumo[] resumos;
+    // private String[] conteudos;
 
-    public RegistroResumos(int i) {
-        this.limite = i;
-        this.resumos = new String[i];
-        this.conteudos = new String[i];
+    public RegistroResumos(int qt) {
+        this.limite = qt;
+        this.resumos = new Resumo[qt];
     }
     public void adiciona(String tema, String conteudo) {
         if (!temResumo(tema)) {
-            this.resumos[indice] = tema;
-            this.conteudos[indice] = conteudo;
+            Resumo newResumo = new Resumo(tema, conteudo);
+
+            this.resumos[indice] = newResumo;
+
             this.indice += 1;
             this.indice = indice % limite;
         }
@@ -23,7 +28,7 @@ public class RegistroResumos {
         int k = 0;
         for (int i = 0; i < limite; i++) {
             if (resumos[i] != null) {
-                todos[k] = resumos[i] + ": " + conteudos[i];
+                todos[k] = resumos[i].toString();
                 k++;
             }
         }
@@ -42,18 +47,31 @@ public class RegistroResumos {
     public String imprimeResumos() {
         String todos = "- " + conta() + " resumo(s) cadastrado(s)\n- ";
         for (int i = 0; i < conta() - 1; i++) {
-            todos += resumos[i] + " | ";
+            todos += resumos[i].getTema() + " | ";
         }
-        todos += resumos[conta() - 1];
+        todos += resumos[conta() - 1].getTema();
         return todos;
     }
 
     public boolean temResumo(String tema) {
-        for (String t : resumos) {
-            if (t != null){
-                if (t.equals(tema)) return true;
+        for (Resumo resumo : resumos) {
+            if (resumo != null){
+                if (resumo.getTema().equals(tema)) return true;
             }
         }
         return false;
+    }
+
+    public String[] find(String chaveDeBusca) {
+        String[] possiveis = new String[limite];
+        int k = 0;
+        for (Resumo resumo : resumos) {
+            if (resumo != null && resumo.find(chaveDeBusca)) {
+                possiveis[k] = resumo.getTema();
+                k += 1;
+            }
+        }
+
+        return Arrays.copyOf(possiveis, k);
     }
 }
